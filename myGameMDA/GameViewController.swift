@@ -21,6 +21,9 @@ class GameViewController: UIViewController {
         // create a new scene
         scene = SCNScene(named: "art.scnassets/ship.scn")!
         
+        // Remove scene
+        removeShip()
+        
         // create and add a camera to the scene
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
@@ -42,12 +45,6 @@ class GameViewController: UIViewController {
         ambientLightNode.light!.type = .ambient
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
-        
-        // retrieve the ship node
-        ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
-        
-        //change position
-        ship.position.z = -15
         
         // animate the 3d object
 //        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
@@ -89,7 +86,7 @@ class GameViewController: UIViewController {
     }
     
     func removeShip() {
-        scnView.scene?.rootNode.childNode(withName: "ship", recursively: true)?.removeFromParentNode()
+        scene?.rootNode.childNode(withName: "ship", recursively: true)?.removeFromParentNode()
     }
     
     @objc
